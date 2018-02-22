@@ -1978,6 +1978,25 @@ class Node {
   }
 
   /**
+   * The first descendant key requiring validation
+   *
+   * @param {Schema} schema
+   * @return {String|Null}
+   */
+
+  getFirstInvalidDescendantKey(schema) {
+    if (this.validate(schema)) {
+      return this.key
+    }
+    let result = null
+    this.nodes.find(n => {
+      result = n.getFirstInvalidDescendantKey(schema)
+      return typeof result === 'string'
+    })
+    return result
+  }
+
+  /**
    * Validate the node against a `schema`.
    *
    * @param {Schema} schema
@@ -2073,6 +2092,7 @@ memoize(
     'getTextsAtRangeAsArray',
     'hasVoidParent',
     'validate',
+    'getFirstInvalidDescendantKey',
   ],
   {
     takesArguments: true,

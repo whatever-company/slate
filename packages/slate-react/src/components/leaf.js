@@ -118,7 +118,7 @@ class Leaf extends React.Component {
 
     // COMPAT: If the text is empty and the only child, we need to render a
     // line break when copying and pasting to support expected plain text.
-    if (text == '' && parent.kind == 'block' && parent.text == '') {
+    if (text == '' && parent.object == 'block' && parent.text == '') {
       return <span data-slate-zero-width="n">{'\u200B'}</span>
     }
 

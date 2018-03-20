@@ -12,7 +12,11 @@ const IS_PROD = process.env.NODE_ENV === 'production'
 const IS_DEV = !IS_PROD
 
 const config = {
-  entry: ['react-hot-loader/patch', './examples/index.js'],
+  entry: [
+    './examples/polyfills.js',
+    'react-hot-loader/patch',
+    './examples/index.js',
+  ],
   output: {
     path: path.resolve(__dirname, '../../build'),
     filename: '[name]-[hash].js',

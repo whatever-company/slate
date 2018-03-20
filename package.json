@@ -79,10 +79,10 @@
     "yaml-js": "^0.2.0"
   },
   "peerDependencies": {
-    "slate": "*",
+    "@whatever/slate": "*",
+    "@whatever/slate-react": "*",
     "slate-html-serializer": "*",
     "slate-plain-serializer": "*",
-    "slate-react": "*",
     "slate-schema-violations": "*"
   },
   "scripts": {

@@ -23,6 +23,12 @@ const config = {
     publicPath: '/',
     hot: true,
   },
+  resolve: {
+    alias: {
+      'slate-react': '@whatever/slate-react',
+      slate: '@whatever/slate',
+    },
+  },
   module: {
     rules: [
       {

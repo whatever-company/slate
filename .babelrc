@@ -11,7 +11,10 @@
     "webpack": {
       "presets": [
         ["env", {
-          "modules": false
+          "modules": false,
+          "targets": {
+            "browsers": ["last 2 versions", "ie >= 11"]
+          }
         }],
         "react",
         "stage-0"

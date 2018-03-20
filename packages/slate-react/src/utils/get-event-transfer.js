@@ -26,10 +26,6 @@ const FRAGMENT_MATCHER = / data-slate-fragment="([^\s"]+)"/
  */
 
 function getEventTransfer(event) {
-  if (event.nativeEvent) {
-    event = event.nativeEvent
-  }
-
   const transfer = event.dataTransfer || event.clipboardData
   let fragment = getType(transfer, FRAGMENT)
   let node = getType(transfer, NODE)

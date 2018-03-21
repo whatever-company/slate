@@ -48,11 +48,27 @@ function getEventRange(event, value) {
   // COMPAT: In Firefox, `caretRangeFromPoint` doesn't exist. (2016/07/25)
   if (window.document.caretRangeFromPoint) {
     native = window.document.caretRangeFromPoint(x, y)
-  } else {
+  } else if (window.document.caretPositionFromPoint) {
     const position = window.document.caretPositionFromPoint(x, y)
     native = window.document.createRange()
     native.setStart(position.offsetNode, position.offset)
     native.setEnd(position.offsetNode, position.offset)
+  } else if (event.rangeParent) {
+    // COMPAT : in IE11, `caretPositionFromPoint` does not exist (2018/03/20)
+    native = window.document.createRange()
+    native.setStart(event.rangeParent, event.rangeOffset)
+  } else if (window.getSelection) {
+    native = window.document.createRange()
+    const selection = window.getSelection()
+    const range = selection.getRangeAt
+      ? selection.getRangeAt(0)
+      : selection.createRange()
+    native.setStart(
+      selection.focusNode,
+      range.collapsed
+        ? selection.focusOffset
+        : selection.focusNode.innerText.length
+    )
   }
 
   // Resolve a Slate range from the DOM range.

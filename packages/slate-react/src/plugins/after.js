@@ -5,7 +5,7 @@ import React from 'react'
 import getWindow from 'get-window'
 import { Block, Inline, Text } from 'slate'
 
-import { IS_IOS } from '../constants/environment'
+import { IS_IOS, IS_IE } from '../constants/environment'
 import EVENT_HANDLERS from '../constants/event-handlers'
 import HOTKEYS from '../constants/hotkeys'
 import Content from '../components/content'
@@ -281,13 +281,18 @@ function AfterPlugin() {
     const el = findDOMNode(focusNode, window)
     if (!el) return
 
-    el.dispatchEvent(
-      new MouseEvent('mouseup', {
+    let fakeEvent
+    if (IS_IE) {
+      fakeEvent = window.document.createEvent('Event')
+      fakeEvent.initEvent('mouseup', true, true)
+    } else {
+      fakeEvent = new MouseEvent('mouseup', {
         view: window,
         bubbles: true,
         cancelable: true,
       })
-    )
+    }
+    el.dispatchEvent(fakeEvent)
   }
 
   /**

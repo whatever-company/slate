@@ -1,3 +1,5 @@
+import { IS_IE } from './environment'
+
 /**
  * The transfer types that Slate recognizes.
  *
@@ -9,7 +11,7 @@ const TRANSFER_TYPES = {
   HTML: 'text/html',
   NODE: 'application/x-slate-node',
   RICH: 'text/rtf',
-  TEXT: 'text/plain',
+  TEXT: IS_IE ? 'text' : 'text/plain',
 }
 
 /**

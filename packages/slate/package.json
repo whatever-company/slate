@@ -1,7 +1,7 @@
 {
   "name": "@whatever/slate",
   "description": "A completely customizable framework for building rich text editors.",
-  "version": "0.32.6-2",
+  "version": "0.32.6-3",
   "license": "MIT",
   "repository": "git://github.com/ianstormtaylor/slate.git",
   "main": "lib/slate.js",

@@ -23,6 +23,12 @@ const config = {
     publicPath: '/',
     hot: true,
   },
+  resolve: {
+    alias: {
+      'slate-react': '@eliumhq/slate-react',
+      slate: '@eliumhq/slate',
+    },
+  },
   module: {
     rules: [
       {

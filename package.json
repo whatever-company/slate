@@ -71,10 +71,10 @@
     "webpack-dev-server": "^2.11.1"
   },
   "peerDependencies": {
-    "slate": "*",
+    "@eliumhq/slate": "*",
     "slate-html-serializer": "*",
     "slate-plain-serializer": "*",
-    "slate-react": "*",
+    "@eliumhq/slate-react": "*",
     "slate-schema-violations": "*"
   },
   "scripts": {

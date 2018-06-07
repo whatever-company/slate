@@ -1,7 +1,7 @@
 import Base64 from 'slate-base64-serializer'
 import Debug from 'debug'
 import Plain from 'slate-plain-serializer'
-import { IS_IOS } from 'slate-dev-environment'
+import { IS_IOS, IS_IE } from 'slate-dev-environment'
 import React from 'react'
 import getWindow from 'get-window'
 import { Block, Inline, Text } from 'slate'
@@ -279,13 +279,18 @@ function AfterPlugin() {
     const el = findDOMNode(focusNode, window)
     if (!el) return
 
-    el.dispatchEvent(
-      new MouseEvent('mouseup', {
+    let fakeEvent
+    if (IS_IE) {
+      fakeEvent = window.document.createEvent('Event')
+      fakeEvent.initEvent('mouseup', true, true)
+    } else {
+      fakeEvent = new MouseEvent('mouseup', {
         view: window,
         bubbles: true,
         cancelable: true,
       })
-    )
+    }
+    el.dispatchEvent(fakeEvent)
   }
 
   /**
